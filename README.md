@@ -1,12 +1,27 @@
 # Grafana K6 Performance Testing
 
-## GitHub Actions + SonarCloud
+## GitHub Actions
 
-[![K6 Performance Testing](https://github.com/ugioni/k6-performance-testing/actions/workflows/node.js.yml/badge.svg)](https://github.com/ugioni/k6-performance-testing/actions/workflows/node.js.yml)
+[![K6 Performance Testing](https://github.com/Isaac-Alexsander/isaac-alexsander-prova03-k6/actions/workflows/node.js.yml/badge.svg)](https://github.com/Isaac-Alexsander/isaac-alexsander-prova03-k6/actions/workflows/node.js.yml)
 
-</br>
+## Teste da Prova 03
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ugioni_playwright-e2e&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ugioni_playwright-e2e)
+Teste de performance com k6 contra a API da prova 02:
+<https://api-prova02-isaacalexsander.onrender.com>
+
+O cenário (`src/tests/Tests.spec.js`) exercita `GET /items` (com `limit`/`skip`),
+`GET /items/:id`, `POST /items` e `PUT /items/:id`.
+
+**Rampa (stages):** inicia com 7 VUs, sobe até o máximo de 92 VUs e volta a 0,
+com duração total de 3,5 minutos (30s + 45s + 45s + 60s + 30s = 210s).
+
+**Thresholds:**
+
+- `http_req_duration: p(90)<6800` (90% das respostas abaixo de 6800ms)
+- `http_req_failed: rate<0.25` (menos de 25% das requisições com erro)
+
+Como a API está no Render free tier e hiberna após inatividade, o workflow faz um
+warm-up no `/health` antes de rodar o k6.
 
 ## Getting Started
 
