@@ -15,6 +15,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
 
+      - name: Warm-up da API (Render free tier hiberna)
+        run: |
+          for i in $(seq 1 10); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 90 https://api-prova02-isaacalexsander.onrender.com/health || true)
+            echo "Tentativa $i: HTTP $code"
+            if [ "$code" = "200" ]; then
+              curl -s -o /dev/null -w "Tempo de resposta (API acordada): %{time_total}s\n" https://api-prova02-isaacalexsander.onrender.com/health
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "API nao respondeu ao warm-up"
+          exit 1
+
       - name: Setup K6
         uses: grafana/setup-k6-action@v1.2.2
       - name: Run local k6 test
