@@ -2,9 +2,9 @@
 
 ## GitHub Actions
 
-[![K6 Performance Testing](https://github.com/Isaac-Alexsander/isaac-alexsander-prova03-k6/actions/workflows/node.js.yml/badge.svg)](https://github.com/Isaac-Alexsander/isaac-alexsander-prova03-k6/actions/workflows/node.js.yml)
+[![K6 Performance Testing](https://github.com/Isaac-Alexsander/isaac-alexsander-prova04-k6/actions/workflows/node.js.yml/badge.svg)](https://github.com/Isaac-Alexsander/isaac-alexsander-prova04-k6/actions/workflows/node.js.yml)
 
-## Teste da Prova 03
+## Teste da Prova 04
 
 Teste de performance com k6 contra a API da prova 02:
 <https://api-prova02-isaacalexsander.onrender.com>
